@@ -1,0 +1,16 @@
+summary: ''
+description: ''
+lock: '!inline f/extraction_information/bien_ban_lam_viec.script.lock'
+kind: script
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties:
+    file_content:
+      type: string
+      description: ''
+      contentEncoding: base64
+      default: null
+      originalType: bytes
+  required:
+    - file_content
