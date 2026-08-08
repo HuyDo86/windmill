@@ -4,7 +4,7 @@ excludes: []
 includeGroups: false
 includeKey: false
 includes:
-  - f/extraction_information/chuyen_khoan
+  - f/extraction_information/chuyen_khoan/*
 includeSchedules: false
 includeSettings: false
 includeTriggers: false
