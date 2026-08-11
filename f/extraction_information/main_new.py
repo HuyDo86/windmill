@@ -1,22 +1,25 @@
 import os
 import wmill
 from typing import Optional, Literal
-# You can import any PyPi package. 
+
+
+
 from f.extraction_information.utils import (
-    parse_input_text,
-    extract_json,
-    clean_extracted_data,
-    compute_accuracy_score,
+parse_input_text,
+extract_json,
+clean_extracted_data,
+compute_accuracy_score,
 )
 from f.extraction_information.prompt_build import build_prompt
 from f.extraction_information.model_loader import get_model_config
 from f.extraction_information.llm import call_llm
+from f.extraction_information.schema_class import SCHEMA_REGISTRY
 
 
 def run_extraction(
-    file_content,
-    user_prompt: Optional[str] = None,
-    model_name: Literal["llama", "qwen_vlm", "gpt", "deepseek"] = "qwen_vlm",  
+file_content,
+user_prompt: Optional[str] = None,
+model_name: Literal["llama", "qwen_vlm", "gpt", "deepseek"] = "qwen_vlm",
 ):
     # 1. OCR
     ocr_text = parse_input_text(file_content)
