@@ -11,7 +11,7 @@ from f.extraction_information.utils import (
 from f.extraction_information.prompt_build import build_prompt
 from f.extraction_information.model_loader import get_model_config
 from f.extraction_information.llm import call_llm
-from f.extraction_information.schema_class.SCHEMA_REGISTRY import SCHEMA_REGISTRY
+import f.extraction_information.schema_class.SCHEMA_REGISTRY as SCHEMA
 
 
 def run_extraction(
@@ -41,7 +41,7 @@ def run_extraction(
     data = clean_extracted_data(data)
 
     # 7. Map schema tự động
-    schema_class = SCHEMA_REGISTRY.get(doc_type)
+    schema_class = SCHEMA.SCHEMA_REGISTRY.get(doc_type)
 
     if schema_class:
         try:
