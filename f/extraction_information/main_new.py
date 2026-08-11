@@ -2,13 +2,11 @@ import os
 import wmill
 from typing import Optional, Literal
 
-
-
 from f.extraction_information.utils import (
-parse_input_text,
-extract_json,
-clean_extracted_data,
-compute_accuracy_score,
+    parse_input_text,
+    extract_json,
+    clean_extracted_data,
+    compute_accuracy_score,
 )
 from f.extraction_information.prompt_build import build_prompt
 from f.extraction_information.model_loader import get_model_config
