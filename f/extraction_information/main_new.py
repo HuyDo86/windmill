@@ -17,7 +17,7 @@ from f.extraction_information.schema import SCHEMA_REGISTRY
 def run_extraction(
     file_content,
     user_prompt: Optional[str] = None,
-    model_name: Literal["llama", "qwen_vlm", "gpt", "deepseek"] = "qwen_vlm",
+    model_name: Literal["llama", "qwen_vlm", "deepseek"] = "qwen_vlm",
 ):
     # 1. OCR
     ocr_text = parse_input_text(file_content)
