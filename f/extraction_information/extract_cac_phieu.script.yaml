@@ -1,6 +1,6 @@
 summary: ''
 description: ''
-lock: '!inline f/extraction_information/extract.script.lock'
+lock: '!inline f/extraction_information/extract_cac_phieu.script.lock'
 kind: script
 schema:
   $schema: https://json-schema.org/draft/2020-12/schema
