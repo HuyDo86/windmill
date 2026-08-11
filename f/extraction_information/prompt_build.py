@@ -63,7 +63,7 @@ DỮ LIỆU OCR:
 
 ---------------------
 YÊU CẦU:
-- Nếu user có chỉ định loại phiếu → ưu tiên theo user
+- Nếu user có chỉ định → ưu tiên theo user
 - Nếu không → xử lý tổng quát
 - Chỉ trả về JSON hợp lệ
 - Không giải thích
