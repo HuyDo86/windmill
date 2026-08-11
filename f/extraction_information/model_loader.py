@@ -14,5 +14,9 @@ def get_model_config(model_name: str | None):
 
     if not resource_path:
         raise ValueError(f"Model {model_name} not found")
+    print("MODEL NAME:", model_name)
 
+    registry = wmill.get_resource("u/huyxuan264/models")
+    print("REGISTRY:", registry)
+    print("TYPE:", type(registry))
     return wmill.get_resource(resource_path)
