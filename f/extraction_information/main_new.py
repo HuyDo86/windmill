@@ -11,7 +11,7 @@ from f.extraction_information.utils import (
 from f.extraction_information.prompt_build import build_prompt
 from f.extraction_information.model_loader import get_model_config
 from f.extraction_information.llm import call_llm
-from f.extraction_information.schema_class import SCHEMA_REGISTRY
+from f.extraction_information.schema_class.SCHEMA_REGISTRY import SCHEMA_REGISTRY
 
 
 def run_extraction(
