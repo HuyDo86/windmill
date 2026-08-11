@@ -74,6 +74,8 @@ YÊU CẦU:
 - KHÔNG ```python
 - KHÔNG ```json
 - KHÔNG text thừa
+- KHÔNG được trả f"{{}}"
+- Nếu không có dữ liệu → trả null
 - Output phải parse được bằng json.loads()
 
 Nếu sai format → coi như thất bại
