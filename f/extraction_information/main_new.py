@@ -55,5 +55,4 @@ def run_extraction(
     return {
         "document_type": doc_type,
         "extracted_data": data,
-        "accuracy": accuracy,
     }
