@@ -13,18 +13,13 @@ schema:
     model_name:
       type: string
       description: ''
-      default: null
-      originalType: string
-    model_registry_url:
-      type: string
-      description: ''
-      default: u/huyxuan264/models
-      originalType: string
-    prompt_registry_url:
-      type: string
-      description: ''
-      default: u/huyxuan264/prompts
-      originalType: string
+      default: qwen_vlm
+      enum:
+        - llama
+        - qwen_vlm
+        - gpt
+        - deepseek
+      originalType: enum
     user_prompt:
       type: string
       description: ''
