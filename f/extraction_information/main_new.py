@@ -15,7 +15,7 @@ from f.extraction_information.schema_class import SCHEMA_REGISTRY
 
 
 def run_extraction(
-    file_content,
+    file_content: bytes,
     user_prompt: Optional[str] = None,
     model_name: Literal["llama", "qwen_vlm", "gpt", "deepseek"] = "qwen_vlm",
 ):
