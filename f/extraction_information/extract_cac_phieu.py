@@ -8,7 +8,7 @@ def main(
     user_prompt: Optional[str] = None,
 
     # dropdown model
-    model_name: Literal[ "mistral", "deepseek", "llama", "qwen_vlm"] = "qwen_vlm",
+    model_name: Literal[ "qwen_7b", "deepseek", "llama", "qwen_vlm"] = "qwen_vlm",
 
 
     ):

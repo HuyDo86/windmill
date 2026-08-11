@@ -17,7 +17,7 @@ schema:
       description: ''
       default: qwen_vlm
       enum:
-        - mistral
+        - qwen_7b
         - deepseek
         - llama
         - qwen_vlm
