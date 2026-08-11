@@ -17,10 +17,10 @@ schema:
       description: ''
       default: qwen_vlm
       enum:
-        - llama
-        - qwen_vlm
         - gpt
         - deepseek
+        - llama
+        - qwen_vlm
       originalType: enum
     user_prompt:
       type: string
