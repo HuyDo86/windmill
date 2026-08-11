@@ -38,12 +38,9 @@ YÊU CẦU TRÍCH XUẤT ĐẶC BIỆT:
 
 3. XỬ LÝ NHIỀU PHIẾU / NHIỀU CHỨNG TỪ TRONG CÙNG 1 ẢNH:
    - Nếu ảnh chứa nhiều phiếu/chứng từ (ví dụ: chụp ghép 2-3 phiếu thu/chi/giao hàng cạnh nhau hoặc trên dưới):
-   - Phân tách rõ ràng từng chứng từ bằng đường phân cách `---` 
+   - Phân tách rõ ràng từng chứng từ bằng đường phân cách `---` và gắn tiêu đề `## Chứng từ 1`, `## Chứng từ 2`,...
    - Trích xuất đầy đủ nội dung của TẤT CẢ các phiếu xuất hiện trong ảnh.
-4. KHÔNG ĐỀ CẬP ĐẾN TÊN 13 LOẠI CHỨNG TỪ: Phiếu thu, Phiếu chi, Phiếu nhập kho, Phiếu xuất kho, Hóa đơn (Hóa đơn GTGT / Hóa đơn bán hàng / Hóa đơn điện tử),
-    Báo giá, Chuyển khoản ngân hàng (Giấy báo Nợ, Giấy báo Có, Ủy nhiệm chi, Biên lai chuyển tiền), Yêu cầu thanh toán (Giấy đề nghị thanh toán), Phiếu nộp thuế  (Giấy nộp tiền vào Ngân sách Nhà nước), 
-    Phiếu giao nhận hàng hóa (Biên bản giao nhận vật tư / hàng hóa), Phiếu giao nhận bê tông (Phiếu xuất xưởng / giao bê tông thương phẩm), Vận đơn (Phiếu vận chuyển / Waybill / Biên bản giao hàng đường bộ), Biên bản làm việc (Biên bản cuộc họp / Biên bản nghiệm thu / Biên bản bàn giao)"""
-
+"""
 
 def main(
     file_content: bytes,
