@@ -5,14 +5,12 @@ from typing import cast
 
 def get_model_config(model_name: str | None):
     registry = cast(dict, wmill.get_resource("f/extraction_information/models"))
-    print("MODEL NAME:", model_name)
-    print("REGISTRY:", registry)
-    print("REGISTRY KEYS:", list(registry.keys()) if registry else None)
+    models = registry.get("models", {}) 
     # default
     if not model_name:
         model_name = list(registry.keys())[0]
 
-    resource_path = registry.get(model_name)
+    resource_path = models.get(model_name)  
 
     if not resource_path:
         raise ValueError(f"Model {model_name} not found")
