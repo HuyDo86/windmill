@@ -68,6 +68,15 @@ YÊU CẦU:
 - Chỉ trả về JSON hợp lệ
 - Không giải thích
 - Giữ nguyên ngôn ngữ gốc (ưu tiên tiếng Việt)
+- KHÔNG viết code
+- KHÔNG giải thích
+- KHÔNG markdown
+- KHÔNG ```python
+- KHÔNG ```json
+- KHÔNG text thừa
+- Output phải parse được bằng json.loads()
+
+Nếu sai format → coi như thất bại
 """
 
     return final_prompt, doc_type
