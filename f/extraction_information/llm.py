@@ -8,7 +8,7 @@ def call_llm(model_cfg, prompt):
     )
 
     res = client.chat.completions.create(
-        model=model_cfg["model_cfg"],
+        model=model_cfg["model"],
         messages=[{"role": "user", "content": prompt}],
         temperature=0,
         max_tokens=4000,
