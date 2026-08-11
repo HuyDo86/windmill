@@ -53,6 +53,5 @@ def run_extraction(
     accuracy = compute_accuracy_score(ocr_text, data)
 
     return {
-        "document_type": doc_type,
         "extracted_data": data,
     }
