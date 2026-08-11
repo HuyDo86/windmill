@@ -4,7 +4,7 @@ import wmill
 PROMPT_REGISTRY = {
     "phieu_chi": "f/extraction_information/phieu_chi",
     "phieu_thu": "f/extraction_information/phieu_thu",
-    "default": "f/extraction_information/default",
+    "default": "f/extraction_information/prompt_default",
 }
 
 
