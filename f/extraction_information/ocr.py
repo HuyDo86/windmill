@@ -45,7 +45,7 @@ YÊU CẦU TRÍCH XUẤT ĐẶC BIỆT:
 def main(
     file_content: bytes,
     media_type: str = "image/jpeg",
-    vlm_resource: dict = wmill.get_resource("u/huyxuan264/qwen_vlm"),
+    vlm_resource: dict = wmill.get_resource("f/extraction_information/qwen_vlm"),
 ) -> dict:
 
     ocr_start = datetime.now(VN_TZ)
