@@ -17,7 +17,7 @@ schema:
       description: ''
       default: qwen_vlm
       enum:
-        - qwen_7b
+        - gpt
         - deepseek
         - llama
         - qwen_vlm
