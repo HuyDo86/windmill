@@ -12,5 +12,20 @@ schema:
       contentEncoding: base64
       default: null
       originalType: bytes
+    model_name:
+      type: string
+      description: ''
+      default: qwen_vlm
+      enum:
+        - llama
+        - qwen_vlm
+        - gpt
+        - deepseek
+      originalType: enum
+    user_prompt:
+      type: string
+      description: ''
+      default: null
+      originalType: string
   required:
     - file_content
