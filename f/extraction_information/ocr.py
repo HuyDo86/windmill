@@ -38,7 +38,7 @@ YÊU CẦU TRÍCH XUẤT ĐẶC BIỆT:
 
 3. XỬ LÝ NHIỀU PHIẾU / NHIỀU CHỨNG TỪ TRONG CÙNG 1 ẢNH:
    - Nếu ảnh chứa nhiều phiếu/chứng từ (ví dụ: chụp ghép 2-3 phiếu thu/chi/giao hàng cạnh nhau hoặc trên dưới):
-   - Phân tách rõ ràng từng chứng từ bằng đường phân cách `---` và gắn tiêu đề `## Chứng từ 1`, `## Chứng từ 2`,...
+   - Phân tách rõ ràng từng chứng từ bằng đường phân cách `---` 
    - Trích xuất đầy đủ nội dung của TẤT CẢ các phiếu xuất hiện trong ảnh."""
 
 
