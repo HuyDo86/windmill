@@ -5,7 +5,9 @@ from typing import cast
 
 def get_model_config(model_name: str | None):
     registry = cast(dict, wmill.get_resource("f/extraction_information/models"))
-
+    print("MODEL NAME:", model_name)
+    print("REGISTRY:", registry)
+    print("REGISTRY KEYS:", list(registry.keys()) if registry else None)
     # default
     if not model_name:
         model_name = list(registry.keys())[0]
@@ -17,6 +19,4 @@ def get_model_config(model_name: str | None):
     print("MODEL NAME:", model_name)
 
     registry = wmill.get_resource("u/huyxuan264/models")
-    print("REGISTRY:", registry)
-    print("TYPE:", type(registry))
-    return wmill.get_resource(resource_path)
+    
