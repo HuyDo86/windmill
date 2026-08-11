@@ -433,3 +433,62 @@ class BienBanLamViec(BaseModel):
     attached_documents: Optional[str] = None
     signatures_note: Optional[str] = None
     note: Optional[str] = None
+
+#Hóa đơn
+class InvoiceItem(BaseModel):
+    model_config = ConfigDict(extra="allow")
+    code: Optional[str] = None
+    name: Optional[str] = None
+    unit: Optional[str] = None
+    quantity: Optional[float] = None
+    unit_price: Optional[float] = None
+    tax_rate: Optional[str] = None
+    tax_amount: Optional[float] = None
+    amount: Optional[float] = None
+
+
+class Invoice(BaseModel):
+    model_config = ConfigDict(extra="allow")
+    invoice_form_symbol: Optional[str] = None
+    invoice_symbol: Optional[str] = None
+    invoice_number: Optional[str] = None
+    date: Optional[str] = None
+    seller_name: Optional[str] = None
+    seller_tax_code: Optional[str] = None
+    seller_address: Optional[str] = None
+    seller_phone: Optional[str] = None
+    seller_bank_account: Optional[str] = None
+    buyer_name: Optional[str] = None
+    buyer_person: Optional[str] = None
+    buyer_tax_code: Optional[str] = None
+    buyer_address: Optional[str] = None
+    buyer_phone: Optional[str] = None
+    buyer_bank_account: Optional[str] = None
+    payment_method: Optional[str] = None
+    currency: Optional[str] = None
+    items: Optional[List[InvoiceItem]] = None
+    subtotal_amount: Optional[float] = None
+    total_tax_amount: Optional[float] = None
+    total_amount: Optional[float] = None
+    amount_in_words: Optional[str] = None
+    lookup_code: Optional[str] = None
+    contract: Optional[str] = None
+    project: Optional[str] = None
+    note: Optional[str] = None
+
+
+SCHEMA_REGISTRY = {
+    "phieu_chi": PhieuChi,
+    "phieu_thu": PhieuThu,
+    "van_don": Waybill,
+    "hoa_don": Invoice,
+    "chuyen_khoan": ChuyenKhoanNganHang,
+    "bien_ban_lam_viec": BienBanLamViec,
+    "phieu_nhap_hang": StockReceiptNote,
+    "phieu_xuat_hang": StockIssueNote,
+    "yeu_cau_thanh_toan": PaymentRequest,
+    "bao_gia": Quotation,
+    "giao_nhan_hang_hoa": PhieuGiaoNhanHangHoa,
+    "giao_nhan_be_tong": PhieuGiaoNhanBeTong,
+    "phieu_thue": PhieuNopThue
+}
