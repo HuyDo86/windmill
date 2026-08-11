@@ -1,11 +1,10 @@
-import os
-import wmill
 from openai import OpenAI
 
 
 def call_llm(model_cfg, prompt):
     client = OpenAI(
         api_key=model_cfg["api_key"],
+        base_url=model_cfg.get("base_url"),  
     )
 
     res = client.chat.completions.create(
