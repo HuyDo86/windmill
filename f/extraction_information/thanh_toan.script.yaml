@@ -12,10 +12,15 @@ schema:
       contentEncoding: base64
       default: null
       originalType: bytes
-    vlm_resource:
-      type: object
+    model_path:
+      type: string
       description: ''
-      default: <function call>
-      properties: {}
+      default: null
+      originalType: string
+    prompt_path:
+      type: string
+      description: ''
+      default: null
+      originalType: string
   required:
     - file_content
