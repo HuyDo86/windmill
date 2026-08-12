@@ -12,5 +12,15 @@ schema:
       contentEncoding: base64
       default: null
       originalType: bytes
+    model_path:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    prompt_path:
+      type: string
+      description: ''
+      default: null
+      originalType: string
   required:
     - file_content
