@@ -11,11 +11,7 @@ PROMPT_REGISTRY = {
 
 
 def detect_doc_type(user_prompt: Optional[str]) -> str:
-    """
-    Chỉ detect từ user_prompt
-    KHÔNG dùng OCR để tránh sai logic
-    """
-
+    
     if not user_prompt:
         return "default"
 
