@@ -12,7 +12,7 @@ SCHEMA_REGISTRY = {
     "thanh_toan": "f/extraction_information/schema_thanh_toan",
     "hoa_don": "f/extraction_information/schema_hoa_don",
     "bao_gia": "f/extraction_information/schema_bao_gia",
-    "thue": "f/extraction_information/schema_thue",
+    "phieu_thue": "f/extraction_information/schema_thue",
     "bien_ban_lam_viec": "f/extraction_information/schema_bien_ban_lam_viec",
     "phieu_giao_nhan_hang_hoa": "f/extraction_information/schema_phieu_giao_nhan_hang_hoa",
     "phieu_giao_nhan_be_tong": "f/extraction_information/schema_phieu_giao_nhan_be_tong",
