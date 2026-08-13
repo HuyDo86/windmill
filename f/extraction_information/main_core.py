@@ -1,14 +1,14 @@
-from f.extraction_information.utils import (
+from f.extraction_information.core.utils import (
     parse_input_text,
     extract_json,
     clean_extracted_data,
     compute_accuracy_score,
 )
 
-from f.extraction_information.prompt_builder_core import build_prompt
-from f.extraction_information.model_loader_core import get_model_config
-from f.extraction_information.llm_core import call_llm
-from f.extraction_information.schema_loader_core import get_schema
+from f.extraction_information.core.prompt_builder_core import build_prompt
+from f.extraction_information.core.model_loader_core import get_model_config
+from f.extraction_information.core.llm_core import call_llm
+from f.extraction_information.core.schema_loader_core import get_schema
 
 
 def run_extraction(
