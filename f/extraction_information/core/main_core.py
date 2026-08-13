@@ -31,7 +31,6 @@ def run_extraction(
     # 4. CALL LLM
     raw_output = call_llm(model_cfg, prompt)
 
-    print("RAW OUTPUT:", raw_output)
 
     # 5. PARSE JSON
     data = extract_json(raw_output)
@@ -39,7 +38,6 @@ def run_extraction(
     if not data:
         data = {
             "raw_output": raw_output,
-            "error": "empty_json",
         }
 
     # 6. CLEAN
