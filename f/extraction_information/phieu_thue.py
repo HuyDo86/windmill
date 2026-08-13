@@ -1,6 +1,6 @@
 import wmill
 from typing import Optional
-from f.extraction_information.main_core import run_extraction
+from f.extraction_information.core.main_core import run_extraction
 
 
 def main(
