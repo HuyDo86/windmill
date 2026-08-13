@@ -10,7 +10,7 @@ def main(
 ):
     return run_extraction(
         file_content=file_content,
-        doc_type="bao gia",
+        doc_type="bao_gia",
         model_path=model_path,
         prompt_path=prompt_path,
     )
