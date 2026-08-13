@@ -1,6 +1,11 @@
-summary: null
+summary: ''
 display_name: extraction_information
+default_permissioned_as:
+  - path_glob: scripts/*
+    permissioned_as: g/usres
+  - path_glob: '**'
+    permissioned_as: g/dev
 extra_perms:
-  u/huyxuan264: true
-owners:
-  - u/huyxuan264
+  g/dev: true
+  g/usres: false
+owners: []
