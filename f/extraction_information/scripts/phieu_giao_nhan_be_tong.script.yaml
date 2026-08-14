@@ -1,6 +1,8 @@
 summary: ''
 description: ''
 lock: '!inline f/extraction_information/scripts/phieu_giao_nhan_be_tong.script.lock'
+extra_perms:
+  g/usres: false
 kind: script
 schema:
   $schema: https://json-schema.org/draft/2020-12/schema
