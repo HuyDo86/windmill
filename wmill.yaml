@@ -4,7 +4,7 @@ excludes: []
 includeGroups: false
 includeKey: false
 includes:
-  - f/extraction_information/**
+  - f/extraction_information/*
 includeSchedules: false
 includeSettings: false
 includeTriggers: false
