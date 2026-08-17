@@ -1,9 +1,8 @@
 codebases: []
 defaultTs: bun
-excludes: [
-  - "f/extraction_information/deepseek_r1.resource.yaml"
-  - "f/extraction_information/llama_4.resource.yaml"
-]
+excludes: 
+  - f/extraction_information/deepseek_r1.resource.yaml
+  - f/extraction_information/llama_4.resource.yaml
 includeGroups: false
 includeKey: true
 includes:
