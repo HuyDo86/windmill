@@ -5,9 +5,6 @@ includeGroups: false
 includeKey: false
 includes:
   - f/extraction_information/*
-exclude:
-  - "f/extraction_information/deepseek_r1.resource.yaml"
-  - "f/extraction_information/llama_4.resource.yaml"
 includeSchedules: false
 includeSettings: false
 includeTriggers: false
@@ -20,7 +17,7 @@ skipResources: false
 skipResourceTypes: false
 skipScripts: false
 skipSecrets: true
-skipVariables: true
+skipVariables: false
 skipWorkspaceDependencies: false
 syncBehavior: v1
 workspaces: {}
