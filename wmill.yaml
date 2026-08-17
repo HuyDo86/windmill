@@ -7,8 +7,8 @@ includes:
   - f/extraction_information/*
 # Trong file wmill.yaml của bạn
 excludes:
-  - "f/extraction_information/deepseek_r1.resource.yaml"
-  - "f/extraction_information/llama_4.resource.yaml"
+  - "f/extraction_information/deepseek_r1"
+  - "f/extraction_information/llama_4"
 includeSchedules: false
 includeSettings: false
 includeTriggers: false
