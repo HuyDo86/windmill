@@ -16,7 +16,7 @@ skipFolders: false
 skipResources: false
 skipResourceTypes: false
 skipScripts: false
-skipSecrets: true
+skipSecrets: false
 skipVariables: false
 skipWorkspaceDependencies: false
 syncBehavior: v1
