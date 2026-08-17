@@ -2,7 +2,7 @@ codebases: []
 defaultTs: bun
 excludes: []
 includeGroups: false
-includeKey: false
+includeKey: true
 includes:
   - f/extraction_information/*
 includeSchedules: false
