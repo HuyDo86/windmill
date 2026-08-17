@@ -1,0 +1,8 @@
+description: ''
+value:
+  default: qwen_vlm
+  models:
+    deepseek: f/extraction_information/deepseek_r1
+    llama: f/extraction_information/llama_4
+    qwen_vlm: f/extraction_information/qwen_vlm
+resource_type: c_my_resource

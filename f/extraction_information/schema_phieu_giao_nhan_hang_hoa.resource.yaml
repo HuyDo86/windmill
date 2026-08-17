@@ -1,0 +1,32 @@
+description: ''
+value:
+  schema:
+    contract: null
+    currency: null
+    date: null
+    deliverer_address: null
+    deliverer_name: null
+    deliverer_organization: null
+    deliverer_phone: null
+    deliverer_signature_name: null
+    delivery_location: null
+    document_number: null
+    items:
+      - name: null
+        amount: null
+        code: null
+        quantity_received: null
+        quantity_sent: null
+        status_note: null
+        unit: null
+        unit_price: null
+    note: null
+    project: null
+    receiver_name: null
+    receiver_organization: null
+    receiver_phone: null
+    receiver_signature_name: null
+    total_amount: null
+    total_amount_in_words: null
+    vehicle_number: null
+resource_type: c_my_schema

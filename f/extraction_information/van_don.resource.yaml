@@ -1,0 +1,132 @@
+description: ''
+value:
+  content: >-
+    """
+
+    You are an expert in transport logistics, freight forwarding, and waybills /
+    bills of lading (Vận đơn / Phiếu vận chuyển hàng hóa / Waybill) in Vietnam.
+
+
+    Extract the following freight waybill fields from the document OCR text in
+    JSON format:
+
+
+    - waybill_number: Waybill or consignment tracking code (Số vận đơn / Mã
+    phiếu vận chuyển, e.g. "WB-99182", "551293")
+
+    - date: Date of waybill issuance or shipping date (in YYYY-MM-DD HH:MM:SS
+    format)
+
+    - carrier_name: Name of the logistics company / carrier / transport provider
+    (Bên vận chuyển / Nhà xe / Công ty Logistics)
+
+    - driver_name: Name of the truck driver (Họ tên lái xe)
+
+    - driver_phone: Phone number of the driver
+
+    - vehicle_number: Vehicle license plate or trailer number (Biển kiểm soát xe
+    / Số xe, e.g. "29H-456.78")
+
+    - transport_route: Origin and destination route (Tuyến vận chuyển, e.g. "Hà
+    Nội - Hải Phòng")
+
+    - sender_organization: Name of the sending company / shipper (Đơn vị gửi
+    hàng / Người gửi)
+
+    - sender_name: Contact person name at sender side
+
+    - sender_phone: Phone number of the sender
+
+    - sender_address: Origin address / pickup location (Địa chỉ lấy hàng / Nơi
+    đi)
+
+    - receiver_organization: Name of the receiving company / consignee (Đơn vị
+    nhận hàng / Người nhận)
+
+    - receiver_name: Contact person name at receiver side
+
+    - receiver_phone: Phone number of the receiver
+
+    - receiver_address: Destination address / delivery location (Địa chỉ giao
+    hàng / Nơi đến)
+
+    - items (List of cargo items being transported):
+       - stt: Line item number (STT, integer)
+       - name: Cargo item description (Tên hàng hóa)
+       - unit: Unit of measurement (Đơn vị tính: kiện, thùng, cuộn, bao, cái...)
+       - quantity: Quantity of packages/items (Số lượng, float)
+       - weight_kg: Total weight in kilograms or metric tons (Trọng lượng kg/tấn, float)
+       - volume_m3: Total cargo volume in cubic meters (Thể tích m3, float)
+       - declared_value: Declared value of cargo for insurance (Giá trị khai báo hàng hóa, float in VND)
+    - freight_charge: Main transport freight fee (Tiền cước vận chuyển, float in
+    VND)
+
+    - surcharges: Additional fees like handling, storage, loading (Phụ phí bốc
+    xếp/lưu kho, float in VND)
+
+    - total_charge: Grand total transport charges (Tổng cước phí vận chuyển,
+    float in VND)
+
+    - payment_status: Payment terms / status (Trạng thái thanh toán, e.g.,
+    "Người gửi thanh toán", "Thu đầu nhận", "Đã thanh toán")
+
+    - cod_amount: Cash on Delivery amount to collect from receiver (Số tiền thu
+    hộ COD, float in VND)
+
+    - note: Special handling instructions or delivery notes (Ghi chú vận chuyển,
+    e.g. "Hàng dễ vỡ, giao giờ hành chính")
+
+
+    **SPECIAL HANDLING RULES FOR 100% OCR FIDELITY**:
+
+    1. STRICT EXTRACTION & NO OMISSION: Read through the entire OCR text from
+    start to finish. Extract ALL cargo items into `items` without skipping any
+    row. Do not truncate or skip any freight item line.
+
+    2. PRESERVE EXACT VALUES: Maintain exact waybill numbers, addresses, phone
+    numbers, weight/volume measurements, and freight charges from the OCR text.
+
+    3. BLURRY / LOW-QUALITY TEXT: Infer missing or blurry words/digits based on
+    shipping logic, phone numbers, weight/volume units, and Vietnamese place
+    names. Do not guess randomly; if a field cannot be identified, return null.
+
+
+    Extract the fields in JSON format. Use null for any field that cannot be
+    found.
+
+
+    Current date and time: {date_time}
+
+
+    Input text from OCR:
+
+    ----------------
+
+    {ocr_text}
+
+    ----------------
+
+
+    IMPORTANT: Respond with ONLY a valid JSON object matching this exact
+    structure, no markdown code fences, no explanation text before or after:
+
+    {{"waybill_number": "<string or null>", "date": "<string or null>",
+    "carrier_name": "<string or null>", "driver_name": "<string or null>",
+    "driver_phone": "<string or null>", "vehicle_number": "<string or null>",
+    "transport_route": "<string or null>", "sender_organization": "<string or
+    null>", "sender_name": "<string or null>", "sender_phone": "<string or
+    null>", "sender_address": "<string or null>", "receiver_organization":
+    "<string or null>", "receiver_name": "<string or null>", "receiver_phone":
+    "<string or null>", "receiver_address": "<string or null>", "items":
+    [{{"stt": <number or null>, "name": "<string or null>", "unit": "<string or
+    null>", "quantity": <number or null>, "weight_kg": <number or null>,
+    "volume_m3": <number or null>, "declared_value": <number or null>}}],
+    "freight_charge": <number or null>, "surcharges": <number or null>,
+    "total_charge": <number or null>, "payment_status": "<string or null>",
+    "cod_amount": <number or null>, "note": "<string or null>"}}
+
+
+    Your Response:
+
+    """
+resource_type: c_content_promt

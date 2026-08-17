@@ -1,0 +1,16 @@
+description: ''
+format_extension: null
+is_fileset: false
+schema:
+  $schema: http://json-schema.org
+  type: object
+  order:
+    - schema
+  properties:
+    schema:
+      type: object
+      additionalProperties:
+        type: string
+        format: resource-path
+  required:
+    - schema

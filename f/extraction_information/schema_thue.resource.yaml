@@ -1,0 +1,29 @@
+description: ''
+value:
+  schema:
+    bank_account_debited: null
+    collecting_authority: null
+    currency: null
+    date: null
+    declarant_name: null
+    district_province: null
+    document_number: null
+    items:
+      - amount: null
+        chapter_code: null
+        economic_content_code: null
+        stt: null
+        subgroup_code: null
+        tax_content: null
+        tax_period: null
+    note: null
+    payment_method: null
+    project: null
+    taxpayer_address: null
+    taxpayer_code: null
+    taxpayer_name: null
+    total_amount: null
+    total_amount_in_words: null
+    treasury_account: null
+    treasury_name: null
+resource_type: c_my_schema

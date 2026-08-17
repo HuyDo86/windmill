@@ -1,0 +1,25 @@
+description: ''
+format_extension: null
+is_fileset: false
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  order:
+    - api_key
+    - base_url
+    - model
+  properties:
+    api_key:
+      type: string
+      description: ''
+      default: ''
+      nullable: false
+      password: true
+    base_url:
+      type: string
+      description: ''
+    model:
+      type: string
+      description: ''
+  required:
+    - api_key

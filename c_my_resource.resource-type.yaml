@@ -1,0 +1,19 @@
+description: ''
+format_extension: null
+is_fileset: false
+schema:
+  $schema: http://json-schema.org
+  type: object
+  order:
+    - default
+    - models
+  properties:
+    default:
+      type: string
+    models:
+      type: object
+      additionalProperties:
+        type: string
+  required:
+    - default
+    - models

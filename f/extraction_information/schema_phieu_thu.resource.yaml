@@ -1,0 +1,35 @@
+description: ''
+value:
+  schema:
+    amount: null
+    amount_in_words: null
+    approver_name: null
+    approver_organization: null
+    approver_phone: null
+    attached_documents: null
+    bank_account: null
+    code: null
+    contract: null
+    creator_name: null
+    credit_account: null
+    currency: null
+    date: null
+    debit_account: null
+    fund: null
+    invoice: null
+    items: []
+    note: null
+    payer_address: null
+    payer_name: null
+    payer_organization: null
+    payer_phone: null
+    payment_method: null
+    project: null
+    reason: null
+    receipt_type: null
+    receiver_address: null
+    receiver_name: null
+    receiver_organization: null
+    receiver_phone: null
+    task: null
+resource_type: c_my_schema

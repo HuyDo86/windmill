@@ -1,0 +1,128 @@
+description: ''
+value:
+  content: >+
+    """
+
+    You are an expert in procurement, sales, commercial pricing, and quotation
+    documents (Bảng báo giá) in Vietnam.
+
+
+    Extract the following fields from the quotation OCR text in JSON format:
+
+
+    - quotation_number: Document code or quotation number (Số báo giá / Ký hiệu
+    báo giá, e.g. "BG-2023-08", "01/BG")
+
+    - date: Date of the quotation (in YYYY-MM-DD HH:MM:SS format)
+
+    - validity_period: Validity period of the quote (Thời hạn hiệu lực báo giá,
+    e.g. "30 ngày kể từ ngày báo giá", "Đến hết ngày 31/12")
+
+    - supplier_name: Name of the supplier/vendor issuing the quotation (Đơn vị
+    báo giá)
+
+    - supplier_address: Address of the supplier
+
+    - supplier_contact: Contact person representing the supplier (Người đại diện
+    báo giá)
+
+    - supplier_phone: Phone number of the supplier
+
+    - supplier_email: Email address of the supplier
+
+    - customer_name: Name of the client/customer receiving the quotation (Khách
+    hàng / Đơn vị nhận báo giá)
+
+    - customer_address: Address of the customer
+
+    - customer_contact: Contact person representing the customer
+
+    - customer_phone: Phone number of the customer
+
+    - customer_email: Email address of the customer
+
+    - items (List of items, products, or services being quoted):
+       - code: Product / item code (Mã sản phẩm)
+       - name: Product / item name (Tên hàng hóa, dịch vụ)
+       - specification: Detailed technical specifications or model (Thông số kỹ thuật / Quy cách)
+       - unit: Unit of measurement (Đơn vị tính: bộ, cái, m2, tấn...)
+       - quantity: Quantity quoted (Số lượng, float)
+       - unit_price: Unit price offered (Đơn giá, float in VND)
+       - amount: Total line amount (Thành tiền = quantity * unit_price, float in VND)
+    - subtotal_amount: Subtotal before VAT tax (Cộng tiền hàng chưa VAT, float)
+
+    - vat_tax: VAT tax amount or percentage (Tiền thuế GTGT, float)
+
+    - total_amount: Total quotation price including taxes/fees (Tổng giá trị báo
+    giá, float)
+
+    - amount_in_words: Total price in words (Số tiền bằng chữ)
+
+    - payment_terms: Payment terms and schedules (Điều khoản thanh toán, e.g.,
+    "Tạm ứng 30%, thanh toán 70% sau khi giao hàng")
+
+    - delivery_terms: Delivery terms, lead time, location (Điều khoản giao hàng,
+    thời gian giao hàng)
+
+    - warranty_terms: Warranty conditions or other notes (Điều khoản bảo hành,
+    ghi chú)
+
+    - project: Project or construction site associated with this quotation (Dự
+    án / Công trình)
+
+
+    **SPECIAL HANDLING RULES FOR 100% OCR FIDELITY**:
+
+    1. STRICT EXTRACTION & NO OMISSION: Read through the entire OCR text from
+    start to finish. Extract ALL quoted items in the table into `items` without
+    missing any row. Do not truncate, summarize, or skip any item line from the
+    OCR text.
+
+    2. PRESERVE EXACT VALUES: Maintain exact product specifications, prices,
+    contact details, and payment conditions from the OCR text.
+
+    3. BLURRY / LOW-QUALITY TEXT: Infer missing or blurry words/digits based on
+    commercial logic, context, and standard Vietnamese money/unit notation. Do
+    not guess randomly; if a field cannot be identified, return null.
+
+
+    Extract the fields in JSON format. Use null for any field that cannot be
+    found.
+
+
+    Current date and time: {date_time}
+
+
+    Input text from OCR:
+
+    ----------------
+
+    {ocr_text}
+
+    ----------------
+
+
+    IMPORTANT: Respond with ONLY a valid JSON object matching this exact
+    structure, no markdown code fences, no explanation text before or after:
+
+    {{"quotation_number": "<string or null>", "date": "<string or null>",
+    "validity_period": "<string or null>", "supplier_name": "<string or null>",
+    "supplier_address": "<string or null>", "supplier_contact": "<string or
+    null>", "supplier_phone": "<string or null>", "supplier_email": "<string or
+    null>", "customer_name": "<string or null>", "customer_address": "<string or
+    null>", "customer_contact": "<string or null>", "customer_phone": "<string
+    or null>", "customer_email": "<string or null>", "items": [{{"code":
+    "<string or null>", "name": "<string or null>", "specification": "<string or
+    null>", "unit": "<string or null>", "quantity": <number or null>,
+    "unit_price": <number or null>, "amount": <number or null>}}],
+    "subtotal_amount": <number or null>, "vat_tax": <number or null>,
+    "total_amount": <number or null>, "amount_in_words": "<string or null>",
+    "payment_terms": "<string or null>", "delivery_terms": "<string or null>",
+    "warranty_terms": "<string or null>", "project": "<string or null>"}}
+
+
+    Your Response:
+
+    """
+
+resource_type: c_content_promt

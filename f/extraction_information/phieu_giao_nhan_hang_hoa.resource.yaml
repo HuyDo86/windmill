@@ -1,0 +1,123 @@
+description: ''
+value:
+  content: >
+    """
+
+    You are an expert in logistics, material delivery, and goods hand-over
+    documents (Phiếu giao nhận hàng hóa / Biên bản giao nhận vật tư / hàng hóa)
+    in Vietnam.
+
+
+    Extract the following fields from the delivery note OCR text in JSON format:
+
+
+    - document_number: Document voucher number (Số biên bản / Số phiếu giao
+    nhận, e.g. "BBGN-091", "05/GNHH")
+
+    - date: Date of goods delivery and receipt (in YYYY-MM-DD HH:MM:SS format)
+
+    - deliverer_organization: Name of the delivering company / supplier (Đơn vị
+    giao hàng / Bên giao)
+
+    - deliverer_name: Name of the person delivering goods / driver (Họ tên người
+    giao hàng)
+
+    - deliverer_phone: Phone number of the deliverer
+
+    - deliverer_address: Address of the deliverer organization
+
+    - vehicle_number: License plate of delivery vehicle (Biển kiểm soát xe giao
+    hàng, e.g. "29C-123.45")
+
+    - receiver_organization: Name of the receiving company / client (Đơn vị nhận
+    hàng / Bên nhận)
+
+    - receiver_name: Name of the person receiving goods (Họ tên người nhận hàng)
+
+    - receiver_phone: Phone number of the receiver
+
+    - delivery_location: Delivery site / warehouse location (Địa điểm giao nhận
+    hàng / Công trình)
+
+    - contract: Reference contract number or purchase order (Số hợp đồng / Đơn
+    hàng)
+
+    - project: Associated project or construction site (Dự án / Công trình)
+
+    - items (List of items handed over):
+       - code: Item code (Mã hàng hóa / vật tư)
+       - name: Item name, specifications, grade (Tên hàng hóa, quy cách, chủng loại)
+       - unit: Unit of measure (Đơn vị tính: kg, tấn, m3, bao, cây, chiếc...)
+       - quantity_sent: Quantity dispatched / sent by supplier (Số lượng giao theo chứng từ, float)
+       - quantity_received: Quantity actually received and inspected (Số lượng thực nhận, float)
+       - unit_price: Unit price (Đơn giá, float in VND if present)
+       - amount: Line total amount (Thành tiền = quantity_received * unit_price, float in VND if present)
+       - status_note: Quality and condition inspection notes (Tình trạng quy cách, chất lượng, đóng gói, móp méo...)
+    - total_amount: Total amount value of delivered items (Tổng thành tiền,
+    float if present)
+
+    - total_amount_in_words: Total amount in words (Số tiền bằng chữ if present)
+
+    - note: Overall inspection observations and delivery remarks (Ghi chú / Nhận
+    xét giao nhận)
+
+    - deliverer_signature_name: Printed name under deliverer signature (Họ tên
+    người giao ký)
+
+    - receiver_signature_name: Printed name under receiver signature (Họ tên
+    người nhận ký)
+
+
+    **SPECIAL HANDLING RULES FOR 100% OCR FIDELITY**:
+
+    1. STRICT EXTRACTION & NO OMISSION: Read through the entire OCR text from
+    start to finish. Extract ALL delivered items into `items` without skipping
+    any line. Do not truncate or skip any product/material row.
+
+    2. PRESERVE EXACT VALUES: Maintain exact product descriptions, quantities,
+    vehicle numbers, and inspection status notes from the OCR text.
+
+    3. BLURRY / LOW-QUALITY TEXT: Infer missing or blurry words/digits based on
+    inventory context and standard Vietnamese unit notation. Do not guess
+    randomly; if a field cannot be identified, return null.
+
+
+    Extract the fields in JSON format. Use null for any field that cannot be
+    found.
+
+
+    Current date and time: {date_time}
+
+
+    Input text from OCR:
+
+    ----------------
+
+    {ocr_text}
+
+    ----------------
+
+
+    IMPORTANT: Respond with ONLY a valid JSON object matching this exact
+    structure, no markdown code fences, no explanation text before or after:
+
+    {{"document_number": "<string or null>", "date": "<string or null>",
+    "deliverer_organization": "<string or null>", "deliverer_name": "<string or
+    null>", "deliverer_phone": "<string or null>", "deliverer_address": "<string
+    or null>", "vehicle_number": "<string or null>", "receiver_organization":
+    "<string or null>", "receiver_name": "<string or null>", "receiver_phone":
+    "<string or null>", "delivery_location": "<string or null>", "contract":
+    "<string or null>", "project": "<string or null>", "items": [{{"code":
+    "<string or null>", "name": "<string or null>", "unit": "<string or null>",
+    "quantity_sent": <number or null>, "quantity_received": <number or null>,
+    "unit_price": <number or null>, "amount": <number or null>, "status_note":
+    "<string or null>"}}], "total_amount": <number or null>,
+    "total_amount_in_words": "<string or null>", "note": "<string or null>",
+    "deliverer_signature_name": "<string or null>", "receiver_signature_name":
+    "<string or null>"}}
+
+
+    Your Response:
+
+    """
+resource_type: c_content_promt

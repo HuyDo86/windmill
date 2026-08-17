@@ -1,0 +1,28 @@
+description: ''
+value:
+  schema:
+    carrier_name: null
+    cod_amount: null
+    currency: null
+    date: null
+    driver_name: null
+    driver_phone: null
+    freight_charge: null
+    internal_code: null
+    items: []
+    note: null
+    order_code: null
+    receiver_address: null
+    receiver_name: null
+    receiver_organization: null
+    receiver_phone: null
+    sender_address: null
+    sender_name: null
+    sender_organization: null
+    sender_phone: null
+    surcharges: null
+    total_charge: null
+    transport_route: null
+    vehicle_number: null
+    waybill_number: null
+resource_type: c_my_schema

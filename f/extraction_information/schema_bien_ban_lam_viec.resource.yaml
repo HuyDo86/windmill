@@ -1,0 +1,17 @@
+description: ''
+value:
+  schema:
+    action_items: null
+    agreed_conclusions: null
+    attached_documents: null
+    date: null
+    discussion_content: null
+    document_number: null
+    document_title: null
+    location: null
+    note: null
+    participants: []
+    project: null
+    purpose: null
+    signatures_note: null
+resource_type: c_my_schema

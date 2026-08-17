@@ -1,0 +1,6 @@
+description: ''
+value:
+  api_key: $var:f/extraction_information/qwen_vlm
+  base_url: https://aiapi.fastwork.vn/vlm/v1
+  model: 5CD-AI/Vintern-3B-R-beta
+resource_type: my_openrouter

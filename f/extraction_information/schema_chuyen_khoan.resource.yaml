@@ -1,0 +1,26 @@
+description: ''
+value:
+  schema:
+    amount: null
+    amount_in_words: null
+    bank_seal_status: null
+    beneficiary_account: null
+    beneficiary_address: null
+    beneficiary_bank: null
+    beneficiary_name: null
+    contract: null
+    currency: null
+    date: null
+    fee_amount: null
+    fee_bearer: null
+    invoice: null
+    note: null
+    project: null
+    reason: null
+    remitter_account: null
+    remitter_address: null
+    remitter_bank: null
+    remitter_name: null
+    transaction_code: null
+    transaction_type: null
+resource_type: c_my_schema

@@ -1,0 +1,30 @@
+description: ''
+value:
+  schema:
+    accumulated_volume_m3: null
+    additive: null
+    batch_number: null
+    concrete_grade: null
+    construction_item: null
+    customer: null
+    date: null
+    delivery_location: null
+    document_number: null
+    driver_name: null
+    driver_signature_name: null
+    note: null
+    plant_location: null
+    project: null
+    pump_code: null
+    pump_type: null
+    receiver_signature_name: null
+    slump: null
+    stone_size: null
+    supplier: null
+    time_arriving_site: null
+    time_finishing_pour: null
+    time_leaving_plant: null
+    time_starting_pour: null
+    truck_number: null
+    volume_m3: null
+resource_type: c_my_schema

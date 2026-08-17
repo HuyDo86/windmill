@@ -1,0 +1,157 @@
+description: ''
+value:
+  content: >
+    """
+
+    You are an expert in accounting, finance, and inventory management for
+    construction businesses in Vietnam.
+
+
+    Extract the following fields from the text related to stock issue note
+    (Phiếu xuất kho) OCR text in JSON format:
+
+
+    - document_number: The code/number of the stock issue note (Số phiếu xuất
+    kho, e.g. "PXK01", "02/XK")
+
+    - date: The date of the note in YYYY-MM-DD HH:MM:SS format
+
+    - debit_account: Debit account code (Tài khoản Nợ, e.g. "621", "627", "154")
+
+    - credit_account: Credit account code (Tài khoản Có, e.g. "152", "156")
+
+    - issuer_organization: Name of the issuing company/organization (Đơn vị xuất
+    kho / Công ty)
+
+    - issuer_representative: Name of the person representing the issuer /
+    warehouse keeper (Thủ kho xuất / Người xuất)
+
+    - issuer_phone: Phone number of the issuer
+
+    - receiver: The name of the organization or department receiving the goods
+    (Đơn vị nhận / Bộ phận nhận)
+
+    - receiver_representative: The name of the person receiving the issued goods
+    (Người nhận hàng / Kỹ sư công trình)
+
+    - receiver_phone: Phone number of the receiver
+
+    - creator_name: Name of the person who created the stock issue note (Người
+    lập phiếu)
+
+    - approver_name: Name of the person approving the issue (Kế toán trưởng /
+    Giám đốc / Thủ trưởng đơn vị)
+
+    - contract: Contract name/number or dispatch command number (Theo hợp đồng /
+    Lệnh điều chuyển số)
+
+    - invoice (Số hóa đơn): Invoice number or name (Theo hóa đơn số)
+
+    - delivery_location: The destination construction site, department or
+    warehouse receiving the stock (Địa điểm giao / Công trình nhận)
+
+    - issued_from: The warehouse (nhà kho) or storage location issuing the stock
+    (Xuất tại kho)
+
+    - reason: Reason for stock issue (Mục đích / Lý do xuất kho, e.g., "Xuất
+    phục vụ thi công công trình", "Xuất cho đội xây dựng", "Xuất điều chuyển
+    kho")
+
+    - items (A list of products/services being issued):
+       - code: Product code (Mã số vật tư)
+       - name: Product name (Tên, quy cách vật tư hàng hóa)
+       - unit: Đơn vị tính (ĐVT) MUST extract valid units like: kg, tấn, tạ, yến, bao, cây, m, m2, m3, bộ, cái, viên, thùng, hộp...
+       - quantity_requested: Quantity requested for issue (Số lượng yêu cầu) (float)
+       - quantity_real: Quantity actually issued from warehouse (Số lượng thực xuất) (float)
+       - unit_price: Unit price (Đơn giá, float in VND)
+       - amount: Amount (Thành tiền = quantity_real * unit_price, float in VND)
+    - total_amount (tổng số tiền): The total amount of money for all of the
+    products/services (float, in VND, cannot be negative) (Normalize to float
+    VND using Vietnamese money units: k=1 thousand, lít/xị/lốp/l=1 hundred
+    thousand, tr/củ/chai/m=1 million, b/t/tỏi=1 billion; support mixed notation
+    (e.g., 3tr -> 3.000.000); apply the same magnitude logic to unseen slang;
+    bare numbers <1000 -> thousands. e.g. 1tr3 -> 1300000; 400k -> 400000; 260
+    -> 260000; 5l -> 500000, 50 -> 50000)
+
+    - total_amount_in_words: Total amount in words (Số tiền bằng chữ)
+
+    - note: Any other notable details or description (Ghi chú)
+
+    - project (dự án): The project that the stock issue note is associated with
+    (if any)
+
+    - attached_documents: Original supporting documents attached (e.g. "Lệnh
+    xuất kho", "Phiếu đề nghị vật tư")
+
+
+    **SPECIAL HANDLING RULES FOR 100% OCR FIDELITY**:
+
+    1. STRICT EXTRACTION & NO OMISSION: Read through the entire OCR text from
+    start to finish. Extract ALL item rows in the table into `items` without
+    skipping any row. Do not truncate, summarize, or skip any product line from
+    the OCR text.
+
+    2. PRESERVE EXACT VALUES: Maintain exact product names, quantities, unit
+    prices, units of measure, and document codes from the OCR text.
+
+    3. BLURRY / LOW-QUALITY TEXT: Infer missing or blurry words/digits based on
+    accounting logic, context, and standard Vietnamese money/unit notation. Do
+    not guess randomly; if a field cannot be identified, return null.
+
+
+    Example: "Xuất 10 cây thép D18 cho công trình HWA từ kho trung tâm của cty
+    ABC"
+
+    - issuer_organization: "cty ABC"
+
+    - issued_from: "kho trung tâm"
+
+    - delivery_location: "công trình HWA"
+
+    - items: [{{"code": null, "name": "thép D18", "unit": "cây",
+    "quantity_requested": 10.0, "quantity_real": 10.0, "unit_price": null,
+    "amount": null}}]
+
+    - project: "HWA"
+
+
+    Extract the fields in JSON format. Use null for any field that cannot be
+    found.
+
+
+    Current date and time: {date_time}
+
+
+    Input text from OCR:
+
+    ----------------
+
+    {ocr_text}
+
+    ----------------
+
+
+    IMPORTANT: Respond with ONLY a valid JSON object matching this exact
+    structure, no markdown code fences, no explanation text before or after:
+
+    {{"document_number": "<string or null>", "date": "<string or null>",
+    "debit_account": "<string or null>", "credit_account": "<string or null>",
+    "issuer_organization": "<string or null>", "issuer_representative": "<string
+    or null>", "issuer_phone": "<string or null>", "receiver": "<string or
+    null>", "receiver_representative": "<string or null>", "receiver_phone":
+    "<string or null>", "creator_name": "<string or null>", "approver_name":
+    "<string or null>", "contract": "<string or null>", "invoice": "<string or
+    null>", "delivery_location": "<string or null>", "issued_from": "<string or
+    null>", "reason": "<string or null>", "items": [{{"code": "<string or
+    null>", "name": "<string or null>", "unit": "<string or null>",
+    "quantity_requested": <number or null>, "quantity_real": <number or null>,
+    "unit_price": <number or null>, "amount": <number or null>}}],
+    "total_amount": <number or null>, "total_amount_in_words": "<string or
+    null>", "note": "<string or null>", "project": "<string or null>",
+    "attached_documents": "<string or null>"}}
+
+
+    Your Response:
+
+    """
+resource_type: c_content_promt

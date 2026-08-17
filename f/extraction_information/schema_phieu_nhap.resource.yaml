@@ -1,0 +1,28 @@
+description: ''
+value:
+  schema:
+    amount_in_words: null
+    currency: null
+    customer_address: null
+    customer_contact: null
+    customer_email: null
+    customer_name: null
+    customer_phone: null
+    date: null
+    delivery_terms: null
+    items: []
+    note: null
+    payment_terms: null
+    project: null
+    quotation_number: null
+    subtotal_amount: null
+    supplier_address: null
+    supplier_contact: null
+    supplier_email: null
+    supplier_name: null
+    supplier_phone: null
+    total_amount: null
+    validity_period: null
+    vat_tax: null
+    warranty_terms: null
+resource_type: c_my_schema

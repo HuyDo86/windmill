@@ -1,0 +1,135 @@
+description: ''
+value:
+  content: >-
+    """
+
+    You are an expert in accounting, tax regulations, and electronic invoices
+    (Hóa đơn điện tử / GTGT) in Vietnam.
+
+
+    Extract the following fields from the invoice OCR text in JSON format:
+
+
+    - invoice_form_symbol: Form symbol / template code of the invoice (Ký hiệu
+    mẫu số hóa đơn, e.g. "1", "2", "1 C23 TAA")
+
+    - invoice_symbol: Serial symbol of the invoice (Ký hiệu hóa đơn, e.g.
+    "AA/23E", "C23 TAA", "K24 TAA")
+
+    - invoice_number: Invoice number (Số hóa đơn, e.g. "0001234", "12345")
+
+    - date: Date of invoice issuance (in YYYY-MM-DD HH:MM:SS format)
+
+    - seller_name: Name of the seller company/organization (Đơn vị bán hàng)
+
+    - seller_tax_code: Tax identification number of the seller (Mã số thuế bên
+    bán)
+
+    - seller_address: Address of the seller (Địa chỉ bên bán)
+
+    - seller_phone: Telephone number of the seller
+
+    - seller_bank_account: Bank account number / bank name of the seller
+
+    - buyer_name: Name of the buyer company/organization (Tên đơn vị mua hàng)
+
+    - buyer_person: Name of the buyer individual (Họ tên người mua hàng)
+
+    - buyer_tax_code: Tax identification number of the buyer (Mã số thuế bên
+    mua)
+
+    - buyer_address: Address of the buyer (Địa chỉ bên mua)
+
+    - buyer_phone: Telephone number of the buyer
+
+    - buyer_bank_account: Bank account number of the buyer
+
+    - payment_method: Payment method (Hình thức thanh toán, e.g. "TM/CK",
+    "Chuyển khoản", "Tiền mặt")
+
+    - currency: Payment currency (e.g. "VND", "USD")
+
+    - items (List of goods/services on the invoice):
+       - code: Item code (Mã hàng hóa / dịch vụ)
+       - name: Item name / description (Tên hàng hóa, dịch vụ)
+       - unit: Unit of measure (Đơn vị tính: cái, bộ, m3, kg, chiếc...)
+       - quantity: Quantity (Số lượng, float)
+       - unit_price: Unit price before tax (Đơn giá, float)
+       - tax_rate: VAT tax rate for this item (Thuế suất GTGT: "0%", "5%", "8%", "10%", "KKT")
+       - tax_amount: VAT tax amount for this item (Tiền thuế GTGT, float)
+       - amount: Amount before tax (Thành tiền chưa thuế = quantity * unit_price, float)
+    - subtotal_amount: Total amount before VAT (Cộng tiền hàng chưa thuế GTGT,
+    float)
+
+    - total_tax_amount: Total VAT tax amount (Tổng cộng tiền thuế GTGT, float)
+
+    - total_amount: Grand total amount including VAT (Tổng cộng tiền thanh toán,
+    float)
+
+    - amount_in_words: Grand total amount in words (Số tiền viết bằng chữ)
+
+    - lookup_code: Verification / lookup code of electronic invoice (Mã tra cứu
+    hóa đơn / Mã CQT)
+
+    - contract: Contract number/name referenced on invoice (Số hợp đồng)
+
+    - project: Associated project/construction name (Dự án / Công trình)
+
+
+    **SPECIAL HANDLING RULES FOR 100% OCR FIDELITY**:
+
+    1. STRICT EXTRACTION & NO OMISSION: Read through the entire OCR text from
+    start to finish. Extract ALL line items in the table into `items` without
+    missing any row. Do not truncate, summarize, or skip any product/service
+    line from the OCR text.
+
+    2. PRESERVE EXACT VALUES: Maintain exact tax codes, tax rates, line amounts,
+    total amounts, and lookup codes from the OCR text.
+
+    3. BLURRY / LOW-QUALITY TEXT: Infer missing or blurry words/digits based on
+    accounting logic, tax calculations, and standard Vietnamese money/unit
+    notation. Do not guess randomly; if a field cannot be identified, return
+    null.
+
+
+    Extract the fields in JSON format. Use null for any field that cannot be
+    found.
+
+
+    Current date and time: {date_time}
+
+
+    Input text from OCR:
+
+    ----------------
+
+    {ocr_text}
+
+    ----------------
+
+
+    IMPORTANT: Respond with ONLY a valid JSON object matching this exact
+    structure, no markdown code fences, no explanation text before or after:
+
+    {{"invoice_form_symbol": "<string or null>", "invoice_symbol": "<string or
+    null>", "invoice_number": "<string or null>", "date": "<string or null>",
+    "seller_name": "<string or null>", "seller_tax_code": "<string or null>",
+    "seller_address": "<string or null>", "seller_phone": "<string or null>",
+    "seller_bank_account": "<string or null>", "buyer_name": "<string or null>",
+    "buyer_person": "<string or null>", "buyer_tax_code": "<string or null>",
+    "buyer_address": "<string or null>", "buyer_phone": "<string or null>",
+    "buyer_bank_account": "<string or null>", "payment_method": "<string or
+    null>", "currency": "<string or null>", "items": [{{"code": "<string or
+    null>", "name": "<string or null>", "unit": "<string or null>", "quantity":
+    <number or null>, "unit_price": <number or null>, "tax_rate": "<string or
+    null>", "tax_amount": <number or null>, "amount": <number or null>}}],
+    "subtotal_amount": <number or null>, "total_tax_amount": <number or null>,
+    "total_amount": <number or null>, "amount_in_words": "<string or null>",
+    "lookup_code": "<string or null>", "contract": "<string or null>",
+    "project": "<string or null>"}}
+
+
+    Your Response:
+
+    """
+resource_type: c_content_promt

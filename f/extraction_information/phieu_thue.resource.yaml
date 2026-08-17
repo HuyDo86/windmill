@@ -1,0 +1,119 @@
+description: ''
+value:
+  content: >+
+    """
+
+    You are an expert in tax regulations, public finance, and state budget
+    payment slips (Giấy nộp tiền vào Ngân sách Nhà nước / Phiếu nộp thuế - Mẫu
+    C1-02/NS) in Vietnam.
+
+
+    Extract the following fields from the tax payment slip OCR text in JSON
+    format:
+
+
+    - document_number: Document voucher number (Số giấy nộp tiền vào NSNN, e.g.
+    "GNT-00123", "01/GNT")
+
+    - date: Tax payment / execution date (in YYYY-MM-DD HH:MM:SS format)
+
+    - taxpayer_name: Name of the taxpayer organization / individual (Tên người
+    nộp thuế)
+
+    - taxpayer_code: Tax identification number (Mã số thuế - MST của người nộp
+    thuế)
+
+    - taxpayer_address: Address of the taxpayer (Địa chỉ người nộp thuế)
+
+    - declarant_name: Name of the person paying on behalf (Họ tên người nộp thay
+    / Người làm thủ tục)
+
+    - collecting_authority: State tax collection authority agency (Cơ quan quản
+    lý thu, e.g. "Chi cục Thuế Quận Cầu Giấy", "Cục Thuế TP. Hồ Chí Minh")
+
+    - treasury_account: State budget treasury account number (Tài khoản thu ngân
+    sách nhà nước, e.g. "TK 7111", "TK 3511")
+
+    - treasury_name: State treasury or authorized collecting bank name (Tại Kho
+    bạc Nhà nước / Ngân hàng ủy nhiệm thu, e.g. "KBNN Hà Nội", "Vietinbank Chi
+    nhánh Ba Đình")
+
+    - district_province: District and Province of the collecting area
+    (Quận/Huyện, Tỉnh/Thành phố thu)
+
+    - items (List of tax entries in the state budget table):
+       - stt: Item index number (STT, integer)
+       - tax_content: Content of tax item payment (Nội dung khoản nộp NSNN, e.g. "Thuế GTGT hàng SXKD trong nước", "Thuế TNDN từ hoạt động SXKD")
+       - tax_period: Tax period / tax year (Kỳ thuế / Năm thuế, e.g. "Q1/2026", "05/2026", "Năm 2025")
+       - subgroup_code: Tax subgroup code (Mã tiểu mục / Mã TM, e.g. "1701", "1052", "1702")
+       - chapter_code: Tax chapter code (Mã chương, e.g. "754", "554", "154")
+       - economic_content_code: Economic content code / NDKT (Mã NTM / Nội dung kinh tế, e.g. "1701")
+       - amount: Amount paid for this tax item (Số tiền nộp, float in VND)
+    - total_amount: Total amount paid to the state budget (Tổng số tiền nộp
+    NSNN, float in VND)
+
+    - total_amount_in_words: Total tax payment amount in words (Tổng số tiền
+    bằng chữ)
+
+    - payment_method: Payment method (Hình thức nộp, e.g. "Tiền mặt", "Trích
+    TK", "Chuyển khoản")
+
+    - bank_account_debited: Debited bank account number for tax payment (Tài
+    khoản trích nợ)
+
+    - project: Project name if paying tax specifically for a project (Dự án /
+    Công trình)
+
+
+    **SPECIAL HANDLING RULES FOR 100% OCR FIDELITY**:
+
+    1. STRICT EXTRACTION & NO OMISSION: Read through the entire OCR text from
+    start to finish. Extract ALL tax items in the state budget table into
+    `items` without missing any row. Do not truncate or skip any tax line item.
+
+    2. PRESERVE EXACT VALUES: Maintain exact tax codes (Chương, Tiểu mục), tax
+    identification numbers (MST), and amounts from the OCR text.
+
+    3. BLURRY / LOW-QUALITY TEXT: Infer missing or blurry words/digits based on
+    tax rules, tax codes, and standard Vietnamese money notation. Do not guess
+    randomly; if a field cannot be identified, return null.
+
+
+    Extract the fields in JSON format. Use null for any field that cannot be
+    found.
+
+
+    Current date and time: {date_time}
+
+
+    Input text from OCR:
+
+    ----------------
+
+    {ocr_text}
+
+    ----------------
+
+
+    IMPORTANT: Respond with ONLY a valid JSON object matching this exact
+    structure, no markdown code fences, no explanation text before or after:
+
+    {{"document_number": "<string or null>", "date": "<string or null>",
+    "taxpayer_name": "<string or null>", "taxpayer_code": "<string or null>",
+    "taxpayer_address": "<string or null>", "declarant_name": "<string or
+    null>", "collecting_authority": "<string or null>", "treasury_account":
+    "<string or null>", "treasury_name": "<string or null>",
+    "district_province": "<string or null>", "items": [{{"stt": <number or
+    null>, "tax_content": "<string or null>", "tax_period": "<string or null>",
+    "subgroup_code": "<string or null>", "chapter_code": "<string or null>",
+    "economic_content_code": "<string or null>", "amount": <number or null>}}],
+    "total_amount": <number or null>, "total_amount_in_words": "<string or
+    null>", "payment_method": "<string or null>", "bank_account_debited":
+    "<string or null>", "project": "<string or null>"}}
+
+
+    Your Response:
+
+    """
+
+resource_type: c_content_promt

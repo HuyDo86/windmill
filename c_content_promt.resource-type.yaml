@@ -1,0 +1,14 @@
+description: ''
+format_extension: null
+is_fileset: false
+schema:
+  $schema: http://json-schema.org
+  type: object
+  order:
+    - content
+  properties:
+    content:
+      type: string
+      contentMediaType: text/plain
+  required:
+    - content

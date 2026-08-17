@@ -1,0 +1,8 @@
+description: ''
+value:
+  default: default_prompt
+  prompts:
+    default_prompt: f/extraction_information/prompt_default
+    phiếu chi: f/extraction_information/phieu_chi
+    phiếu thu: f/extraction_information/phieu_thu
+resource_type: c_my_prompt

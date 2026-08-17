@@ -1,0 +1,120 @@
+description: ''
+value:
+  content: >
+    """
+
+    You are an expert in banking, payment processing, and accounting for bank
+    transfers (Chuyển khoản ngân hàng / Ủy nhiệm chi / Giấy báo Nợ / Giấy báo Có
+    / Biên lai chuyển tiền) in Vietnam.
+
+
+    Extract the following fields from the bank transaction receipt OCR text in
+    JSON format:
+
+
+    - transaction_code: Unique bank transaction reference code or document
+    number (Mã giao dịch / Số chứng từ ngân hàng, e.g. "FT231209381",
+    "UNC-0192")
+
+    - transaction_type: Specific type of bank document (e.g. "Ủy nhiệm chi",
+    "Giấy báo Nợ", "Giấy báo Có", "Biên lai chuyển tiền", "Lệnh chuyển tiền")
+
+    - date: Transaction or execution date (in format YYYY-MM-DD HH:MM:SS)
+
+    - remitter_name: Name of the ordering party / sender / account holder
+    transferring money (Tên tài khoản chuyển / Bên trả tiền)
+
+    - remitter_account: Account number of the remitter (Số tài khoản chuyển)
+
+    - remitter_bank: Bank name and branch of the remitter (Ngân hàng chuyển,
+    e.g. "Vietcombank CN Hà Nội")
+
+    - remitter_address: Address of the remitter (if shown)
+
+    - beneficiary_name: Name of the receiving party / beneficiary account holder
+    (Tên tài khoản thụ hưởng / Bên nhận tiền)
+
+    - beneficiary_account: Account number of the beneficiary (Số tài khoản thụ
+    hưởng)
+
+    - beneficiary_bank: Bank name and branch of the beneficiary (Ngân hàng thụ
+    hưởng, e.g. "BIDV CN Ba Đình")
+
+    - beneficiary_address: Address of the beneficiary (if shown)
+
+    - amount: Total transaction amount (Số tiền chuyển, float in VND/currency)
+
+    - amount_in_words: Transaction amount in words (Số tiền bằng chữ)
+
+    - currency: Currency of the transaction (e.g. "VND", "USD")
+
+    - fee_amount: Transaction fee amount charged by the bank (Phí giao dịch,
+    float)
+
+    - fee_bearer: Party bearing the transaction fee (Bên chịu phí, e.g. "Bên
+    chuyển trả", "Bên nhận trả")
+
+    - reason: Transaction remarks / payment details / reason (Nội dung chuyển
+    tiền / Lý do thanh toán)
+
+    - contract: Reference contract number (Số hợp đồng)
+
+    - invoice: Reference invoice number (Số hóa đơn)
+
+    - project: Associated project name (Dự án / Công trình)
+
+    - bank_seal_status: Bank confirmation or digital seal status (Trạng thái xác
+    nhận / Con dấu ngân hàng, e.g. "Đã hạch toán", "Giao dịch thành công", "Có
+    con dấu")
+
+
+    **SPECIAL HANDLING RULES FOR 100% OCR FIDELITY**:
+
+    1. STRICT EXTRACTION & NO OMISSION: Read through the entire OCR text from
+    start to finish. Extract 100% of all bank transfer fields. Do not skip,
+    summarize, or truncate any detail present in the input OCR text.
+
+    2. PRESERVE EXACT VALUES: Maintain exact account numbers, transaction ref
+    codes, bank names, and transfer amounts from the OCR text.
+
+    3. BLURRY / LOW-QUALITY TEXT: Infer missing or blurry words/digits based on
+    accounting logic, context, and standard Vietnamese money notation. Do not
+    guess randomly; if a field cannot be identified, return null.
+
+
+    Extract the fields in JSON format. Use null for any field that cannot be
+    found.
+
+
+    Current date and time: {date_time}
+
+
+    Input text from OCR:
+
+    ----------------
+
+    {ocr_text}
+
+    ----------------
+
+
+    IMPORTANT: Respond with ONLY a valid JSON object matching this exact
+    structure, no markdown code fences, no explanation text before or after:
+
+    {{"transaction_code": "<string or null>", "transaction_type": "<string or
+    null>", "date": "<string or null>", "remitter_name": "<string or null>",
+    "remitter_account": "<string or null>", "remitter_bank": "<string or null>",
+    "remitter_address": "<string or null>", "beneficiary_name": "<string or
+    null>", "beneficiary_account": "<string or null>", "beneficiary_bank":
+    "<string or null>", "beneficiary_address": "<string or null>", "amount":
+    <number or null>, "amount_in_words": "<string or null>", "currency":
+    "<string or null>", "fee_amount": <number or null>, "fee_bearer": "<string
+    or null>", "reason": "<string or null>", "contract": "<string or null>",
+    "invoice": "<string or null>", "project": "<string or null>",
+    "bank_seal_status": "<string or null>"}}
+
+
+    Your Response:
+
+    """
+resource_type: c_content_promt

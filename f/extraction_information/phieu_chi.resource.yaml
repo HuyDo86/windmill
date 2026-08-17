@@ -1,0 +1,134 @@
+description: ''
+value:
+  content: >
+    """
+
+    You are an expert in accounting, finance, and inventory management for
+    construction businesses in Vietnam.
+
+
+    Extract the following fields from the payment voucher text in JSON format:
+
+
+    - code: Document code/number (if any)
+
+    - payer_organization: Name of the organization paying/disbursing the money
+
+    - payer_name: Name of the person paying/disbursing the money (e.g., cashier,
+    treasurer)
+
+    - payer_phone: Phone number of the payer
+
+    - receiver_organization: Name of the person or organization receiving money
+
+    - receiver_name: Name of the person receiving money
+
+    - receiver_phone: Phone number of the receiver
+
+    - receiver_address: Address of the receiver
+
+    - approver_organization: Name of the organization approving the payment
+
+    - approver_name: Name of the person approving the payment
+
+    - approver_phone: Phone number of the approver
+
+    - creator_name: Name of the person who created the voucher
+
+    - contract (hợp đồng): Contract number or name (if any)
+
+    - invoice (Số hóa đơn): Invoice number or name (if any)
+
+    - task: The main task that the payment is for
+
+    - expense_type: The type of expense (e.g., "Chi mua vật tư", "Chi tạm ứng",
+    "Chi thanh toán nợ", "Chi chi phí quản lý", etc.)
+
+    - date: Date on the voucher (in format YYYY-MM-DD HH:MM:SS)
+
+    - amount (tổng số tiền): Total amount paid (as a float, in VND, cannot be
+    negative) (Normalize to float VND using Vietnamese money units: k=1
+    thousand, lít/xị/lốp/l=1 hundred thousand, tr/củ/chai/m=1 million, b/t/tỏi=1
+    billion; support mixed notation (e.g., 3tr -> 3.000.000); apply the same
+    magnitude logic to unseen slang; bare numbers <1000 -> thousands. e.g. 1tr3
+    -> 1300000; 400k -> 400000; 2m -> 2000000; 5l -> 500000, 50 -> 50000)
+
+    - payment_method: Method of payment (e.g. "Tiền mặt", "Chuyển khoản")
+
+    - bank_account: Bank account number or bank name involved in the payment
+    transaction
+
+    - reason: Reason for payment
+
+    - project (dự án): The project that the payment is associated with (if any)
+
+    - fund (Quỹ): The fund that the money was taken from to pay
+
+    - attached_documents: Original supporting documents attached (e.g. "01 Hóa
+    đơn GTGT", "Phiếu nhập kho")
+
+
+    **SPECIAL HANDLING RULES**:
+
+    1. BLURRY / LOW-QUALITY TEXT: Infer missing or blurry words/digits based on
+    accounting logic, context, and standard Vietnamese money notation. Do not
+    guess randomly; if a field cannot be identified, return null.
+
+    2. LARGE / DETAILED DOCUMENTS: Read through the entire OCR text from start
+    to finish, ensuring no details from footers, notes, or annexes are missed.
+
+    3. MULTIPLE DOCUMENTS IN ONE IMAGE:
+       - If the OCR text contains multiple payment vouchers supporting each other, MERGE their information and calculate total amount.
+       - If the OCR text contains multiple different document types, IGNORE irrelevant document types and extract ONLY the fields belonging to payment vouchers (Phiếu chi).
+
+    Example: "Chi 300tr tiền tạm ứng cho bên thầu thi công Hoàng Hà, công trình
+    HWA"
+
+    - receiver_organization: "thầu thi công Hoàng Hà"
+
+    - expense_type: "tạm ứng cho bên thầu"
+
+    - amount: 300000000.0
+
+    - reason: "Chi tạm ứng cho bên thầu"
+
+    - project: "công trình HWA"
+
+
+    Extract the fields in JSON format. Use null for any field that cannot be
+    found.
+
+
+    Current date and time: {date_time}
+
+
+    Input text:
+
+    ----------------
+
+    {ocr_text}
+
+    ----------------
+
+
+    IMPORTANT: Respond with ONLY a valid JSON object matching this exact
+    structure, no markdown code fences, no explanation text before or after:
+
+    {{"code": "<string or null>", "payer_organization": "<string or null>",
+    "payer_name": "<string or null>", "payer_phone": "<string or null>",
+    "receiver_organization": "<string or null>", "receiver_name": "<string or
+    null>", "receiver_phone": "<string or null>", "receiver_address": "<string
+    or null>", "approver_organization": "<string or null>", "approver_name":
+    "<string or null>", "approver_phone": "<string or null>", "creator_name":
+    "<string or null>", "contract": "<string or null>", "invoice": "<string or
+    null>", "task": "<string or null>", "expense_type": "<string or null>",
+    "date": "<string or null>", "amount": <number or null>, "payment_method":
+    "<string or null>", "bank_account": "<string or null>", "reason": "<string
+    or null>", "project": "<string or null>", "fund": "<string or null>",
+    "attached_documents": "<string or null>"}}
+
+
+    Your Response:
+
+    """
+resource_type: c_content_promt

@@ -1,0 +1,127 @@
+description: ''
+value:
+  content: >-
+    """
+
+    You are an expert in financial accounting and internal payment approval
+    requests (Giấy đề nghị thanh toán / Yêu cầu thanh toán) in Vietnam.
+
+
+    Extract the following fields from the payment request OCR text in JSON
+    format:
+
+
+    - request_number: Payment request voucher code or number (Số giấy đề nghị
+    thanh toán, e.g. "DNTT-019", "12/ĐNTT")
+
+    - date: Date of request issuance (in YYYY-MM-DD HH:MM:SS format)
+
+    - requester_name: Name of the employee/person requesting payment (Họ tên
+    người đề nghị thanh toán)
+
+    - requester_department: Department / division of the requester (Bộ phận /
+    Phòng ban đề nghị, e.g. "Phòng Kỹ thuật", "Đội thi công 1")
+
+    - requester_organization: Organization or company name of the requester (Đơn
+    vị người đề nghị)
+
+    - requester_phone: Phone number of the requester
+
+    - beneficiary_name: Name of the beneficiary person or company to receive
+    payment (Tên người / Đơn vị thụ hưởng)
+
+    - beneficiary_account: Bank account number of the beneficiary (Số tài khoản
+    thụ hưởng)
+
+    - beneficiary_bank: Bank name and branch of the beneficiary (Ngân hàng thụ
+    hưởng)
+
+    - reason: Reason for payment / summary description (Lý do đề nghị thanh toán
+    / Nội dung thanh toán)
+
+    - expense_category: Category of expense (Hạng mục chi phí, e.g. "Chi phí vật
+    tư", "Chi phí nhân công", "Tạm ứng công tác")
+
+    - project: Project or construction site associated with this request (Dự án
+    / Công trình)
+
+    - contract: Reference contract number (Số hợp đồng)
+
+    - invoice: Reference invoice number (Số hóa đơn GTGT)
+
+    - items (List of breakdown payment items if itemized):
+       - code: Item code (Mã khoản chi)
+       - description: Item description / detail (Nội dung chi tiết từng mục)
+       - amount: Amount for this item (Số tiền từng mục, float in VND)
+       - attached_doc: Document attached for this line (Chứng từ đính kèm khoản này)
+    - total_amount: Total amount requested for payment (Tổng số tiền đề nghị
+    thanh toán, float in VND)
+
+    - total_amount_in_words: Total amount requested in words (Tổng số tiền bằng
+    chữ)
+
+    - advance_amount: Amount previously advanced / paid (Số tiền đã tạm ứng,
+    float)
+
+    - remaining_amount: Remaining balance to be paid (Số tiền còn lại phải thanh
+    toán = total_amount - advance_amount, float)
+
+    - approver_name: Name of the person approving the request (Người duyệt /
+    Giám đốc / Kế toán trưởng)
+
+    - attached_documents: Attached supporting documents (Tài liệu đính kèm,
+    e.g., "01 Hóa đơn GTGT, 01 Biên bản nghiệm thu")
+
+
+    **SPECIAL HANDLING RULES FOR 100% OCR FIDELITY**:
+
+    1. STRICT EXTRACTION & NO OMISSION: Read through the entire OCR text from
+    start to finish. Extract ALL payment request items into `items` without
+    skipping any line. Do not truncate or skip any line item.
+
+    2. PRESERVE EXACT VALUES: Maintain exact bank account numbers, names,
+    amounts, and request codes from the OCR text.
+
+    3. BLURRY / LOW-QUALITY TEXT: Infer missing or blurry words/digits based on
+    accounting logic, context, and standard Vietnamese money notation. Do not
+    guess randomly; if a field cannot be identified, return null.
+
+
+    Extract the fields in JSON format. Use null for any field that cannot be
+    found.
+
+
+    Current date and time: {date_time}
+
+
+    Input text from OCR:
+
+    ----------------
+
+    {ocr_text}
+
+    ----------------
+
+
+    IMPORTANT: Respond with ONLY a valid JSON object matching this exact
+    structure, no markdown code fences, no explanation text before or after:
+
+    {{"request_number": "<string or null>", "date": "<string or null>",
+    "requester_name": "<string or null>", "requester_department": "<string or
+    null>", "requester_organization": "<string or null>", "requester_phone":
+    "<string or null>", "beneficiary_name": "<string or null>",
+    "beneficiary_account": "<string or null>", "beneficiary_bank": "<string or
+    null>", "reason": "<string or null>", "expense_category": "<string or
+    null>", "project": "<string or null>", "contract": "<string or null>",
+    "invoice": "<string or null>", "items": [{{"code": "<string or null>",
+    "description": "<string or null>", "amount": <number or null>,
+    "attached_doc": "<string or null>"}}], "total_amount": <number or null>,
+    "total_amount_in_words": "<string or null>", "advance_amount": <number or
+    null>, "remaining_amount": <number or null>, "approver_name": "<string or
+    null>", "attached_documents": "<string or null>"}}
+
+
+    Your Response:
+
+    """
+resource_type: c_content_promt

@@ -1,0 +1,102 @@
+description: ''
+value:
+  content: >
+    """
+
+    You are an expert in business administration, site engineering supervision,
+    and meeting / working minutes (Biên bản làm việc / Biên bản cuộc họp / Biên
+    bản nghiệm thu / Biên bản bàn giao) in Vietnam.
+
+
+    Extract the following fields from the working minutes document OCR text in
+    JSON format:
+
+
+    - document_title: Main title of the document (Tên biên bản, e.g. "BIÊN BẢN
+    LÀM VIỆC", "BIÊN BẢN NGHIỆM THU HIỆN TRƯỜNG", "BIÊN BẢN BÀN GIAO MẶT BẰNG")
+
+    - document_number: Document code / reference number (Số biên bản / Ký hiệu,
+    e.g. "BB-2023/08", "01/BBLV")
+
+    - date: Date and time when the meeting or site inspection took place (Thời
+    gian lập biên bản, in format YYYY-MM-DD HH:MM:SS)
+
+    - location: Location or site address where working took place (Địa điểm làm
+    việc / Hiện trường công trình)
+
+    - project: Name of the associated construction project or contract (Tên dự
+    án / Công trình)
+
+    - participants (List of attendees / representatives present):
+       - name: Full name of participant (Họ và tên)
+       - position: Job position / title (Chức danh / Chức vụ, e.g., "Giám sát trưởng", "Chỉ huy trưởng", "Kế toán")
+       - organization: Represented organization / company name (Đơn vị đại diện, e.g., "Chủ đầu tư", "Tư vấn giám sát", "Nhà thầu thi công")
+       - role: Role in the meeting (Vai trò, e.g., "Chủ trì", "Thư ký", "Thành viên đại diện bên A/B")
+    - purpose: Main objective, reason or agenda of the session (Mục đích / Nội
+    dung làm việc)
+
+    - discussion_content: Detailed discussion points, findings, or inspection
+    results (Nội dung trao đổi / Kết quả kiểm tra hiện trường)
+
+    - agreed_conclusions: Agreed decisions, consensus, or final conclusions (Kết
+    luận chung / Thống nhất của các bên)
+
+    - action_items: Assigned action items, tasks, and deadlines (Công việc tiếp
+    theo / Phân công thực hiện)
+
+    - attached_documents: Attached appendixes, drawings, photos or annexes (Tài
+    liệu đính kèm, e.g. "Bản vẽ hoàn công, 02 ảnh hiện trường")
+
+    - signatures_note: Summary of signatures and approvals (Ghi chú chữ ký xác
+    nhận của đại diện các bên)
+
+
+    **SPECIAL HANDLING RULES FOR 100% OCR FIDELITY**:
+
+    1. STRICT EXTRACTION & NO OMISSION: Read through the entire OCR text from
+    start to finish. Extract ALL participants into `participants` without
+    skipping anyone present. Do not truncate, summarize, or skip any discussion
+    section or conclusion.
+
+    2. PRESERVE EXACT VALUES: Maintain exact names, positions, company
+    representations, meeting locations, and agreed conclusions from the OCR
+    text.
+
+    3. BLURRY / LOW-QUALITY TEXT: Infer missing or blurry words/digits based on
+    administrative context and standard Vietnamese text. Do not guess randomly;
+    if a field cannot be identified, return null.
+
+
+    Extract the fields in JSON format. Use null for any field that cannot be
+    found.
+
+
+    Current date and time: {date_time}
+
+
+    Input text from OCR:
+
+    ----------------
+
+    {ocr_text}
+
+    ----------------
+
+
+    IMPORTANT: Respond with ONLY a valid JSON object matching this exact
+    structure, no markdown code fences, no explanation text before or after:
+
+    {{"document_title": "<string or null>", "date": "<string or null>",
+    "location": "<string or null>", "project": "<string or null>",
+    "participants": [{{"name": "<string or null>", "position": "<string or
+    null>", "organization": "<string or null>", "role": "<string or null>"}}],
+    "purpose": "<string or null>", "discussion_content": "<string or null>",
+    "agreed_conclusions": "<string or null>", "action_items": "<string or
+    null>", "attached_documents": "<string or null>", "signatures_note":
+    "<string or null>"}}
+
+
+    Your Response:
+
+    """
+resource_type: c_content_promt

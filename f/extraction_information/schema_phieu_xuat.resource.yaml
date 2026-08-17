@@ -1,0 +1,28 @@
+description: ''
+value:
+  schema:
+    approver_name: null
+    attached_documents: null
+    contract: null
+    creator_name: null
+    credit_account: null
+    currency: null
+    date: null
+    debit_account: null
+    delivery_location: null
+    document_number: null
+    invoice: null
+    issued_from: null
+    issuer_organization: null
+    issuer_phone: null
+    issuer_representative: null
+    items: []
+    note: null
+    project: null
+    reason: null
+    receiver: null
+    receiver_phone: null
+    receiver_representative: null
+    total_amount: null
+    total_amount_in_words: null
+resource_type: c_my_schema

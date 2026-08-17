@@ -1,0 +1,31 @@
+description: ''
+value:
+  schema:
+    advance_amount: null
+    approver_name: null
+    attached_documents: null
+    beneficiary_account: null
+    beneficiary_bank: null
+    beneficiary_name: null
+    contract: null
+    currency: null
+    date: null
+    expense_category: null
+    invoice: null
+    items:
+      - description: null
+        amount: null
+        attached_doc: null
+        code: null
+    note: null
+    project: null
+    reason: null
+    remaining_amount: null
+    request_number: null
+    requester_department: null
+    requester_name: null
+    requester_organization: null
+    requester_phone: null
+    total_amount: null
+    total_amount_in_words: null
+resource_type: c_my_schema
